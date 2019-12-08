@@ -18,12 +18,26 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJA-7n-Fp0">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8V-vm-YkT">
+                                <rect key="frame" x="20" y="762" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="2D2-qJ-5FH"/>
+                                    <constraint firstAttribute="height" constant="80" id="i3b-qj-OHd"/>
+                                </constraints>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="add:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A9I-3C-gyg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="yJA-7n-Fp0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6zJ-0A-4Bd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yJA-7n-Fp0" secondAttribute="bottom" id="KlW-Od-Oqg"/>
                             <constraint firstItem="yJA-7n-Fp0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OUC-3E-0Sh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="w8V-vm-YkT" secondAttribute="bottom" constant="20" id="Vgu-XY-ADO"/>
+                            <constraint firstItem="w8V-vm-YkT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="cXW-h8-b0Z"/>
                             <constraint firstItem="yJA-7n-Fp0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qDc-Ex-9YS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
