@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func add(_ sender: Any) {
-        
+        self.addHouse()
     }
     
     @IBAction func reset(_ sender: Any) {
@@ -112,9 +112,30 @@ class ViewController: UIViewController {
         boxNode.position  = SCNVector3(0, -0.05, 0)
         doorNode.position = SCNVector3(0, -0.02, 0.051)
         
+        //To rotate the house:
+//        node.eulerAngles = SCNVector3(180.degreesToRadians,0,0)
+        
         self.sceneView.scene.rootNode.addChildNode(node)
         node.addChildNode(boxNode)
         boxNode.addChildNode(doorNode)
     }
+    
+    fileprivate func addRelativePositions() {
+        let cylinder = SCNNode(geometry: SCNCylinder(radius: 0.1, height: 0.1))
+        cylinder.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        cylinder.position = SCNVector3(0,0,-0.3)
+        //Euler angles controls rotations
+        cylinder.eulerAngles = SCNVector3(Float(90.degreesToRadians),0,0)
+        
+        let pyramid = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
+        pyramid.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        pyramid.position = SCNVector3(0, 0, -0.5)
+        
+        self.sceneView.scene.rootNode.addChildNode(cylinder)
+        cylinder.addChildNode(pyramid)
+    }
 }
 
+extension Int {
+    var degreesToRadians: Double { return Double(self) * .pi/180}
+}
