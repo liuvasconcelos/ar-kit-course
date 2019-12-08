@@ -46,23 +46,28 @@ class ViewController: UIViewController {
         // To add a plane:
 //        node.geometry = SCNPlane(width: 0.2, height: 0.2)
         // To add a pyramid:
-//        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
-        // To make custom objects:
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: 0, y: 0.2))
-        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
-        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
-        path.addLine(to: CGPoint(x: 0.4, y: 0))
-        
-        let shape = SCNShape(path: path, extrusionDepth: 0.2)
-        node.geometry = shape
+        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
+        // To make custom objects // Software: BezierCode Lite
+//        let path = UIBezierPath()
+//        path.move(to: CGPoint(x: 0, y: 0))
+//        path.addLine(to: CGPoint(x: 0, y: 0.2))
+//        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
+//        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
+//        path.addLine(to: CGPoint(x: 0.4, y: 0))
+//
+//        let shape = SCNShape(path: path, extrusionDepth: 0.2)
+//        node.geometry = shape
             
         // firstMaterial is the texture of the geometry and diffuse is the color
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
         //specular is the light that the object reflects.
         node.geometry?.firstMaterial?.specular.contents = UIColor.white
         
+        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        
+        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
+        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
         //To add random positions
 //        let x = randomNumbers(firstNumber: -0.3, secondNumber: 0.3)
 //        let y = randomNumbers(firstNumber: -0.3, secondNumber: 0.3)
@@ -70,11 +75,15 @@ class ViewController: UIViewController {
 //        node.position = SCNVector3(x,y,z)
         
         //Vector3 -> 3 dimensions
-        node.position = SCNVector3(0,0,-0.5)
+        node.position = SCNVector3(0.2,0.3,-0.2)
+        boxNode.position = SCNVector3(0, -0.05, 0)
+        doorNode.position = SCNVector3(0, -0.02, 0.051)
         
         //Root node has no attributes (color, size) and is positioned where camera starts.
         //When add a childnode, this child is always relative to the rootnode.
         self.sceneView.scene.rootNode.addChildNode(node)
+        node.addChildNode(boxNode)
+        boxNode.addChildNode(doorNode)
     }
     
     @IBAction func reset(_ sender: Any) {
