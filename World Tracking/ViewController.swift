@@ -31,12 +31,25 @@ class ViewController: UIViewController {
         // firstMaterial is the texture of the geometry and diffuse is the color
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         //Vector3 -> 3 dimensions
-        node.position = SCNVector3(-0.3,-0.3,-0.5)
+        node.position = SCNVector3(0,0,-0.3)
         
         //Root node has no attributes (color, size) and is positioned where camera starts.
         //When add a childnode, this child is always relative to the rootnode.
         self.sceneView.scene.rootNode.addChildNode(node)
     }
     
+    @IBAction func reset(_ sender: Any) {
+        self.restartSession()
+    }
+    
+    func restartSession() {
+        self.sceneView.session.pause()
+        self.sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
+            node.removeFromParentNode()
+        }
+        
+        // .resetTracking removes the previous coordinators and create a new one based on the position that you are.
+        self.sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors] )
+    }
 }
 
